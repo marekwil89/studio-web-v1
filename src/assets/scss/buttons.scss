@@ -1,0 +1,256 @@
+.btn{
+  display: inline-block;
+  text-decoration: none;
+  text-transform: uppercase;
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: 10px;
+  z-index: 999;
+  cursor: pointer;
+  transition: 0.5s all;
+  
+  &.btn-category{
+    border-radius: 0;
+    border-bottom: 3px solid transparent;
+
+    &.active{
+      border-bottom: 3px solid lighten($main-color, 10%);
+    }
+  }
+
+  &.btn-main-full{
+    background: $main-color;
+    border: 1px solid $main-color;
+    color: $white-color;
+
+    &:hover{
+      box-shadow: inset 0px 0px 115px 9px rgba(0,0,0,0.3);
+    }
+  }
+  &.btn-main-outline{
+    position: relative;
+    background: transparent;
+    position: relative;
+    border: 1px solid $main-color;
+    overflow: hidden;
+    color: $main-color;
+    
+    &:hover{
+      color: $white-color;
+      border: 1px solid $main-color;
+      
+      &:after{
+        left: 0;
+      }
+    }
+    
+    &:after{
+      z-index: -1;
+      transition: 0.5s all;
+      position: absolute;
+      // border: 1px solid $main-color;
+      content: '';
+      height: 100%;
+      width: 100%;
+      left: -100%;
+      top: 0;
+      background: $main-color
+    }
+  }
+
+  &.btn-light-outline{
+    position: relative;
+    background: transparent;
+    position: relative;
+    border: 1px solid $white-color;
+    overflow: hidden;
+    color: $white-color;
+    
+    &:hover{
+      color: $primary-dark-color;
+      border: 1px solid $white-color;
+      
+      &:after{
+        left: 0;
+      }
+    }
+
+    &.router-link-exact-active{
+      color: $primary-dark-color;
+      border: 1px solid $white-color;
+      
+      &:after{
+        left: 0;
+      }
+    }
+
+    &:after{
+      z-index: -1;
+      transition: 0.5s all;
+      position: absolute;
+      // border: 1px solid $main-color;
+      content: '';
+      height: 100%;
+      width: 100%;
+      left: -100%;
+      top: 0;
+      background: $white-color;
+    }
+  }
+
+  &.btn-secondary-full{
+    background: $secondary-color;
+    border: 1px solid $secondary-color;
+    color: $white-color;
+
+    &:hover{
+      box-shadow: inset 0px 0px 115px 9px rgba(0,0,0,0.3);
+    }
+  }
+  &.btn-secondary-outline{
+    background: transparent;
+    border: 1px solid $secondary-color;
+    color: $secondary-color;
+  }
+  &.btn-long{
+    width: 100%;
+  }
+  &.btn-small{
+    padding: 6px 24px 6px 24px;
+  }
+  &.btn-medium{
+    padding: 14px 35px;
+  }
+  &.btn-big{
+    font-size: 20px;
+    padding: 20px 58px 20px 58px;
+
+    @media(max-width: 425px){
+      width: 100%;
+      padding: 14px 20px;
+      font-size: 18px;
+    
+    }
+  }
+
+  &.is-loading{
+    position: relative;
+    color: transparent;
+    &::after{
+      content: '';
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: 3px solid $white-color;
+      animation: rotate infinite 5s linear;
+      transform-origin: 75px 75px;
+    }
+
+    &::before{
+      content: '';
+      top: 50%;
+      left: 50%;
+      // transform: translate(-50%, -50%);
+      position: absolute;
+      width: 100%;
+      height: 10px;
+      background: $main-color;
+      z-index: 2;
+      // animation: rotate infinite 0.5s linear;
+    }
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+}
+
+.btn-hamburger{
+  width: 30px;
+  height: 30px;
+  position: relative;
+  cursor: pointer;
+  z-index: 9999;
+
+  .line-first, .line-second, .line-third, .line-forth{
+    position: absolute;
+    transition: 0.3s all;
+    right: 0;
+    height: 2px;
+    background: $white-color;
+  }
+
+  .line-first{
+    top: 3px;
+    width: 100%;
+  }
+
+  .line-second{
+    top: 9px;
+    width: 50%;
+  }
+
+  .line-third{
+    top: 15px;
+    width: 60%;
+  }
+
+  .line-forth{
+    top: 21px;
+    width: 80%;
+  }
+
+  &:hover{
+    .line-first, .line-second, .line-third, .line-forth{
+      width: 100%;
+    }
+  }
+
+  &.moved{
+    .line-first, .line-second, .line-third, .line-forth{
+      background: $white-color;
+    }
+  }
+
+  &.active{
+    .line-third, .line-second{
+      opacity: 0;
+    }
+    
+    .line-first{
+      top: 13px;
+      right: -3px;
+      transform: rotate(45deg);
+      background: $white-color;
+      width: 120%;
+    }
+
+    .line-forth{
+      top: 13px;
+      right: -3px;
+      transform: rotate(-45deg);
+      background: $white-color;      
+      width: 120%;
+    }
+  }
+}
+
+@keyframes rotate{
+  from{
+    transfrom: rotateZ(0deg) translate(-50%, -50%);
+  } 
+  50%{
+    transform: rotateZ(360deg) translate(-50%, -50%);
+  }
+  100%{
+    transform: rotateZ(0deg) translate(-50%, -50%);
+  }
+    
+
+}
